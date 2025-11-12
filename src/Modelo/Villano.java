@@ -9,6 +9,7 @@ public class Villano extends Personaje {
 
     private int indiceDificultad;
     private boolean EsJefe;
+    
     public Villano() {
     }
 
@@ -17,6 +18,8 @@ public class Villano extends Personaje {
         this.indiceDificultad = indiceDificultad;
         this.EsJefe = EsJefe;
     }
+
+   
 
     public int getIndiceDificultad() {
         return indiceDificultad;

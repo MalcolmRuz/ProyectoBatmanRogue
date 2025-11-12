@@ -8,7 +8,7 @@ package Modelo;
 public class Heroe extends Personaje {
     
     private int nivel;
-    private int lola;
+    
     public Heroe() {
     }
 
@@ -64,11 +64,15 @@ public class Heroe extends Personaje {
         
         }
         return true;
-
-    
-    
-    
-    
-
 }
+    public void subirNivel(){
+        this.nivel ++;
+        this.setHpMax(getHpMax() + 10);
+        this.setAtaque(getAtaque() + 3);
+        this.setDefensa(getDefensa() + 1);
+        this.setHp(getHpMax());
+        this.setEspecial(getEspecial() + 2);
+        this.setInteligencia(getInteligencia() + 3);
+        
+    }
 }
