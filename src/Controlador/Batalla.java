@@ -1,7 +1,6 @@
 package Controlador;
 import Modelo.Heroe;
 import Modelo.Villano;
-//probando weas
 /**
  *
  * @author artor
@@ -11,8 +10,11 @@ public class Batalla {
     private Villano villano;
     private boolean turnoHeroe;
     private boolean batallaTerminada;
-    
 
+    public Batalla() {
+    }
+    
+ 
     public Batalla(Heroe heroe, Villano villano, boolean turnoHeroe, boolean batallaTerminada) {
         this.heroe = heroe;
         this.villano = villano;
