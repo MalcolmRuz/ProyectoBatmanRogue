@@ -42,13 +42,13 @@ public class ProgresionMapa {
 
         while (heroe.getHp() > 0 && pisoActual <= PISO_MAX) {     // Bucle: sigue mientras el héroe esté vivo y no supere el máximo
 
-            Villano villanoActual = encuentro.generarVillano(this.pisoActual);   // Generar enemigo aleatorio
+            Villano villanoActual = encuentro.generarVillano(this.pisoActual);   
 
-            batalla.batalla(heroe, villanoActual);                // Iniciar batalla 
+            batalla.batalla(heroe, villanoActual);                 
 
-            if (heroe.getHp() > 0) {                              // Si el héroe sobrevive
-                pisoActual++;                                     // Avanzar al siguiente piso
-                comprobarSubidaPorPisos();                        // Subir nivel cada 3 pisos
+            if (heroe.getHp() > 0) {                              
+                pisoActual++;                                     
+                comprobarSubidaPorPisos();                       
             } else {
                 //System.out.println("💀 Has caído en el piso " + pisoActual + "..."); // Si muere, fin del ciclo <-------no usar sout. se puede guardar ese mensage en un string para que lo mande la consola en la interfaz
                 derrota();
@@ -63,16 +63,16 @@ public class ProgresionMapa {
         }
     }
 
-    private void comprobarSubidaPorPisos() {                       // Subir nivel cada 3 pisos
+    private void comprobarSubidaPorPisos() {                       
         if (pisoActual % 3 == 0) {
-            heroe.subirNivel(); //<------------------------------------ Por implementar 
+            heroe.subirNivel(); 
            
         }
     }
 
-    private void victoria() {                                      // Mensaje de victoria final
+    private void victoria() {                                      // <---------------- POR IMPLEMENTAR mensaje de victoria final
     }
 
-    private void derrota() {                                       // Mensaje de derrota
+    private void derrota() {                                       // <-----------------POR IMPLEMENTAR mensaje de derrota
     }
 }

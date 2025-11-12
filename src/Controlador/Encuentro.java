@@ -12,8 +12,8 @@ public class Encuentro {
     public Encuentro() {
     }
 
-    public Villano generarVillano(ProgresionMapa piso) {
-        int nivel = piso.getPisoActual();
+    public Villano generarVillano(int piso) {
+        int nivel = piso;
         Villano villanoGenerado = null;
 
         String sql = "";
