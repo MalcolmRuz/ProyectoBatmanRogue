@@ -7,7 +7,7 @@ import java.sql.SQLException;
 /**
  *
  
-@author nicoa*/
+@author nicoaafsdf*/
 public class Conexion {
 
     public Connection obtenerConexion() {
