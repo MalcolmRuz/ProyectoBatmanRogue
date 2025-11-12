@@ -1,6 +1,8 @@
 
 package Controlador;
 
+import Modelo.Heroe;
+
 /**
  *
  * @author artor
@@ -31,7 +33,7 @@ public class ProgresionMapa {
     }
     
     public void progresion(){
-        batalla.batalla(, );
+        //batalla.batalla(heroe,encuentro.generarVillano() );
         //aqui implementar la subida de pisos, los encuentros aleatorios.
         //if (piso <= PISO_MAX){
         
@@ -40,4 +42,5 @@ public class ProgresionMapa {
         //}else{victoria()}  <------------------------- implemenentar metodo para pantalla de victoria ya que se superó el piso Max
         
     }
+    
 }

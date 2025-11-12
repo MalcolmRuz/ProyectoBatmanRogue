@@ -4,6 +4,8 @@
  */
 package Vista;
 
+import Sonidos.Sonido;
+
 /**
  *
  * @author Panky
@@ -35,27 +37,36 @@ public class MainMenu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        Jbnt_Start.setBackground(new java.awt.Color(0, 0, 0));
+        Jbnt_Start.setFont(new java.awt.Font("Comic Sans MS", 3, 18)); // NOI18N
+        Jbnt_Start.setForeground(new java.awt.Color(255, 255, 102));
         Jbnt_Start.setText("Start");
         Jbnt_Start.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Jbnt_StartActionPerformed(evt);
             }
         });
-        getContentPane().add(Jbnt_Start, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, 90, 40));
+        getContentPane().add(Jbnt_Start, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, 100, 40));
 
         jLabel2.setFont(new java.awt.Font("Comic Sans MS", 3, 48)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 51));
         jLabel2.setText("Batman Rogue");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, -1, -1));
 
+        Jbtn_opciones.setBackground(new java.awt.Color(0, 0, 0));
+        Jbtn_opciones.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        Jbtn_opciones.setForeground(new java.awt.Color(255, 255, 102));
         Jbtn_opciones.setText("Options");
         Jbtn_opciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Jbtn_opcionesActionPerformed(evt);
             }
         });
-        getContentPane().add(Jbtn_opciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 180, 90, 40));
+        getContentPane().add(Jbtn_opciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 180, 100, 40));
 
+        Jbnt_salir.setBackground(new java.awt.Color(0, 0, 0));
+        Jbnt_salir.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        Jbnt_salir.setForeground(new java.awt.Color(255, 255, 102));
         Jbnt_salir.setText("Exit");
         Jbnt_salir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Jbnt_salir.addActionListener(new java.awt.event.ActionListener() {
@@ -63,7 +74,7 @@ public class MainMenu extends javax.swing.JFrame {
                 Jbnt_salirActionPerformed(evt);
             }
         });
-        getContentPane().add(Jbnt_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 240, 90, 40));
+        getContentPane().add(Jbnt_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 240, 100, 40));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/original-43b9ff268b3e5a744e91c506d358b29a.gif"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 810, 620));
@@ -72,14 +83,15 @@ public class MainMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Jbnt_StartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jbnt_StartActionPerformed
-        // TODO add your handling code here:
+        Sonido.reproducir("Transicion.wav");
     }//GEN-LAST:event_Jbnt_StartActionPerformed
 
     private void Jbtn_opcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jbtn_opcionesActionPerformed
-        // TODO add your handling code here:
+        Sonido.reproducir("Transicion.wav");
     }//GEN-LAST:event_Jbtn_opcionesActionPerformed
 
     private void Jbnt_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jbnt_salirActionPerformed
+        Sonido.reproducir("Transicion.wav");
         System.exit(0);
     }//GEN-LAST:event_Jbnt_salirActionPerformed
 
