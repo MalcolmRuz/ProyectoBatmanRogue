@@ -8,6 +8,7 @@ package Modelo;
 public class Heroe extends Personaje {
     
     private int nivel;
+    private int lola;
     public Heroe() {
     }
 
