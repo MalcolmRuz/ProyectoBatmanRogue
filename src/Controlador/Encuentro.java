@@ -1,7 +1,7 @@
 package Controlador;
 
 import Modelo.Villano;
-import java.util.Random;
+import bd.Conexion;
 
 /**
  *
@@ -12,7 +12,7 @@ public class Encuentro {
     public Encuentro() {
     }
 
-    private Villano generarVillano(ProgresionMapa piso) {
+    public Villano generarVillano(ProgresionMapa piso) {
         int nivel = piso.getPisoActual();
         Villano villanoGenerado = null;
 
@@ -28,10 +28,11 @@ public class Encuentro {
             sql = "SELECT * FROM villano WHERE nivelDificultad = 3 AND esJefe = FALSE ORDER BY RAND() LIMIT 1";
         }
 
-        try (Connection conn = ConexionBD.getConnection(); PreparedStatement ps = conn.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
+        try {Conexion con = new Conexion();
+            Connection cnx = con.obtenerConexion();
 
             if (rs.next()) {
-                villanogenerado = new Villano(
+                villanoGenerado = new Villano(
                         rs.getInt("id"),
                         rs.getString("nombre"),
                         rs.getInt("hp"),
