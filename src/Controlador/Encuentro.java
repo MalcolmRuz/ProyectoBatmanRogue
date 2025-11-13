@@ -1,5 +1,6 @@
 package Controlador;
 
+import Modelo.Usuario;
 import Modelo.Villano;
 import bd.Conexion;
 import java.sql.Connection;
@@ -16,6 +17,106 @@ import java.util.List;
 public class Encuentro {
 
     public Encuentro() {
+    }
+
+    //CREACION DE USUARIO
+    public void crearUsuario(Usuario nuevoUsuario) {
+        Conexion con = new Conexion();
+        Connection cnx = con.obtenerConexion();
+
+        try {
+
+            String queryUsuario = "INSERT INTO usuario (nombreUsuario, genero, edad)values(?,?,?)";
+
+            PreparedStatement ps = cnx.prepareStatement(queryUsuario);
+            ps.setString(1, nuevoUsuario.getNombreUsuario());
+            ps.setString(2, nuevoUsuario.getGenero());
+            ps.setInt(3, nuevoUsuario.getEdad());
+            ps.executeUpdate();
+
+            ps.close();
+            cnx.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error al Crear Usuario: " + e.getMessage());
+        }
+
+    }
+
+    //LISTAR A LOS USUARIOS ..
+    public List<Usuario> listarUsuarios() {
+        List<Usuario> lista = new ArrayList<>();
+        String query = "SELECT * FROM usuario";
+
+        try {
+            Conexion con = new Conexion();
+            Connection cnx = con.obtenerConexion();
+            PreparedStatement ps = cnx.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Usuario us = new Usuario();
+
+                us.setNombreUsuario(rs.getString("nombreUsuario"));
+                us.setEdad(rs.getInt("edad"));
+                us.setGenero(rs.getString("genero"));
+
+                lista.add(us);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error al listar usuario: " + e.getMessage());
+        }
+
+        return lista;
+
+    }
+
+    //ELIMINAR A UN USUARIO MEDIANTE CONFIRMACION DE NOMBREUSUARIO
+    public boolean eliminar(String nombreUsuario) {
+        try {
+            Conexion con = new Conexion();
+            Connection cnx = con.obtenerConexion();
+
+            String query = "DELETE FROM usuario WHERE nombreUsuario = ?";
+            PreparedStatement ps = cnx.prepareStatement(query);
+            ps.setString(1, nombreUsuario);
+
+            ps.executeUpdate();
+            ps.close();
+            cnx.close();
+
+            return true;
+
+        } catch (SQLException e) {
+            System.out.println("Error al elminiar Usuario: " + e.getMessage());
+            return false;
+        }
+    }
+
+    //ACTUALIZAR DATOS USUARIO
+    public boolean actualizar(Usuario usuario) {
+        try {
+            Conexion con = new Conexion();
+            Connection cnx = con.obtenerConexion();
+
+            String query = "UPDATE usuario SET genero=?,edad =? WHERE nombreUsuario =?";
+            PreparedStatement ps = cnx.prepareStatement(query);
+
+            ps.setString(1, usuario.getNombreUsuario());
+            ps.setInt(2, usuario.getEdad());
+            ps.setString(3, usuario.getGenero());
+
+            ps.executeUpdate();
+            ps.close();
+            cnx.close();
+
+            return true;
+
+        } catch (SQLException e) {
+            System.out.println("Error al actualizar Usuario: " + e.getMessage());
+            return false;
+        }
     }
 
     public void crearVillano(Villano nuevoVillano) {
@@ -124,7 +225,6 @@ public class Encuentro {
             PreparedStatement ps = cnx.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
 
-            
             if (rs.next()) {
                 villanoGenerado = new Villano();
                 villanoGenerado.setNombre(rs.getString("nombre"));
@@ -140,7 +240,7 @@ public class Encuentro {
                 villanoGenerado.setGuardiaActiva(rs.getBoolean("guardiaActiva"));
                 villanoGenerado.setIndiceDificultad(rs.getInt("nivelDificultad"));
                 villanoGenerado.setEsJefe(rs.getBoolean("esJefe"));
-                
+
                 //imagen default villano
                 if (villanoGenerado.getImagenPath() == null || villanoGenerado.getImagenPath().isEmpty()) {
                     villanoGenerado.setImagenPath("/Imagenes/villano_default.png");
@@ -158,4 +258,6 @@ public class Encuentro {
 
         return villanoGenerado;
     }
+
+    //idUsuario, nombre, edad, genero
 }

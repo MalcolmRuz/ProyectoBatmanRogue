@@ -2,12 +2,13 @@ package Controlador;
 
 import Modelo.Heroe;
 import Modelo.Villano;
+import javax.swing.JButton;
+import javax.swing.SwingUtilities;
 
 /**
- * Controla la progresión del héroe a través de los pisos del mapa. Cada 3
- * pisos, el héroe sube de nivel automáticamente. El ciclo continúa hasta que el
- * héroe muera o se alcance el piso máximo. Usa la clase Batalla para los
- * combates y Encuentro para generar enemigos.
+ * Controla la progresión del héroe a través de los pisos del mapa.
+ * Cada 3 pisos, el héroe sube de nivel automáticamente.
+ * Usa la clase Batalla para los combates y Encuentro para generar enemigos.
  *
  * @author artor
  */
@@ -18,6 +19,8 @@ public class ProgresionMapa {
     private Encuentro encuentro;
     private Batalla batalla;
     private Heroe heroe;
+    private Villano villanoActual;
+    private JButton botonContinuar; // 🔹 se asocia a la GUI
 
     public ProgresionMapa(int pisoActual, Encuentro encuentro, Batalla batalla, Heroe heroe) {
         this.pisoActual = pisoActual;
@@ -28,51 +31,104 @@ public class ProgresionMapa {
 
     public ProgresionMapa() {
     }
-    
+
+    public void setBotonContinuar(JButton botonContinuar) {
+        this.botonContinuar = botonContinuar;
+    }
+
     public int getPisoActual() {
         return pisoActual;
-    }             
+    }
 
     public void setPisoActual(int pisoActual) {
         this.pisoActual = pisoActual;
-    } 
+    }
 
     // --- MÉTODO PRINCIPAL DE PROGRESIÓN ---
-    public void progresion() {                                    // Controla el avance del héroe piso por piso
+    public void iniciarEncuentro() {
+        if (heroe.getHp() <= 0) {
+            derrota();
+            return;
+        }
+        if (pisoActual > PISO_MAX) {
+            victoria();
+            return;
+        }
 
-        while (heroe.getHp() > 0 && pisoActual <= PISO_MAX) {     // Bucle: sigue mientras el héroe esté vivo y no supere el máximo
+        villanoActual = encuentro.generarVillano(pisoActual);
+        batalla.iniciarBatalla(heroe, villanoActual);
+        
 
-            Villano villanoActual = encuentro.generarVillano(this.pisoActual);   
+        // 🔹 Desactivar botón “Continuar” mientras hay batalla
+        if (botonContinuar != null) {
+            botonContinuar.setEnabled(false);
+        }
+    }
 
-            batalla.batalla(heroe, villanoActual);                 
+    // --- Se llama desde el botón "Atacar", "Especial" o "Defender" ---
+    public void turnoHeroe(int eleccionBoton) {
+        if (batalla == null || villanoActual == null) return;
 
-            if (heroe.getHp() > 0) {                              
-                pisoActual++;                                     
-                comprobarSubidaPorPisos();                       
-            } else {
-                //System.out.println("💀 Has caído en el piso " + pisoActual + "..."); // Si muere, fin del ciclo <-------no usar sout. se puede guardar ese mensage en un string para que lo mande la consola en la interfaz
-                derrota();
-                break;
+        String resultado = batalla.turnoHeroe(eleccionBoton);
+        System.out.println(resultado);
+
+        if (batalla.isBatallaTerminada()) {
+            verificarResultadoBatalla();
+            return;
+        }
+
+        // Esperar un poco antes del contraataque enemigo (sin bloquear GUI)
+        javax.swing.Timer timer = new javax.swing.Timer(1000, e -> {
+            String respuestaVillano = batalla.turnoVillano();
+            System.out.println(respuestaVillano);
+
+            if (batalla.isBatallaTerminada()) {
+                verificarResultadoBatalla();
+            }
+        });
+        timer.setRepeats(false);
+        timer.start();
+    }
+
+    // --- 🔹 Controla el fin de una batalla ---
+    private void verificarResultadoBatalla() {
+        if (batalla.comprobadadorHeroe()) {
+            derrota();
+        } else if (batalla.comprobadadorVillano()) {
+            
+
+            // 🔹 Activar botón “Continuar” para avanzar de piso manualmente
+            if (botonContinuar != null) {
+                SwingUtilities.invokeLater(() -> botonContinuar.setEnabled(true));
             }
         }
+    }
 
-        if (heroe.getHp() > 0 && pisoActual > PISO_MAX) {
-            victoria(); // Si llega al final, gana
-        } else if (heroe.getHp() <= 0) {
-            derrota();                     
+    // --- 🔹 Llamado desde el botón “Continuar” ---
+    public void avanzarDePiso() {
+        pisoActual++;
+        comprobarSubidaPorPisos();
+
+        if (pisoActual <= PISO_MAX) {
+            
+            iniciarEncuentro();
+        } else {
+            victoria();
         }
     }
 
-    private void comprobarSubidaPorPisos() {                       
+    private void comprobarSubidaPorPisos() {
         if (pisoActual % 3 == 0) {
-            heroe.subirNivel(); 
-           
+            heroe.subirNivel();
+            
         }
     }
 
-    private void victoria() {                                      // <---------------- POR IMPLEMENTAR mensaje de victoria final
+    private void victoria() {
+        
     }
 
-    private void derrota() {                                       // <-----------------POR IMPLEMENTAR mensaje de derrota
+    private void derrota() {
+        
     }
 }
