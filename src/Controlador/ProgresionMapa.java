@@ -45,7 +45,7 @@ public class ProgresionMapa {
     }
 
     // --- MÉTODO PRINCIPAL DE PROGRESIÓN ---
-    public void iniciarEncuentro() {
+    public void iniciarEncuentro(Heroe heroe) {
         if (heroe.getHp() <= 0) {
             derrota();
             return;
@@ -111,7 +111,7 @@ public class ProgresionMapa {
 
         if (pisoActual <= PISO_MAX) {
             
-            iniciarEncuentro();
+            iniciarEncuentro(this.heroe);
         } else {
             victoria();
         }

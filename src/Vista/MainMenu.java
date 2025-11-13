@@ -1,9 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Vista;
 
+import bd.Conexion;
+import Modelo.Heroe;
+import Modelo.HeroeDao;
 import Sonidos.Sonido;
 import javax.sound.sampled.Clip;
 
@@ -33,25 +33,27 @@ public class MainMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Jbnt_Start = new javax.swing.JButton();
+        Jbnt_StartBatman = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         Jbtn_Opciones = new javax.swing.JButton();
         Jbnt_Salir = new javax.swing.JButton();
+        Jbnt_StartRobin = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Jbnt_Start.setBackground(new java.awt.Color(0, 0, 0));
-        Jbnt_Start.setFont(new java.awt.Font("Comic Sans MS", 3, 24)); // NOI18N
-        Jbnt_Start.setForeground(new java.awt.Color(255, 255, 102));
-        Jbnt_Start.setText("Start");
-        Jbnt_Start.addActionListener(new java.awt.event.ActionListener() {
+        Jbnt_StartBatman.setBackground(new java.awt.Color(0, 0, 0));
+        Jbnt_StartBatman.setFont(new java.awt.Font("Comic Sans MS", 3, 24)); // NOI18N
+        Jbnt_StartBatman.setForeground(new java.awt.Color(255, 255, 102));
+        Jbnt_StartBatman.setText("Start Batman");
+        Jbnt_StartBatman.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Jbnt_StartActionPerformed(evt);
+                Jbnt_StartBatmanActionPerformed(evt);
             }
         });
-        getContentPane().add(Jbnt_Start, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 150, 130, 60));
+        getContentPane().add(Jbnt_StartBatman, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 210, 60));
 
         jLabel2.setFont(new java.awt.Font("Comic Sans MS", 3, 48)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 51));
@@ -84,18 +86,35 @@ public class MainMenu extends javax.swing.JFrame {
         });
         getContentPane().add(Jbnt_Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 310, 130, 60));
 
+        Jbnt_StartRobin.setBackground(new java.awt.Color(0, 0, 0));
+        Jbnt_StartRobin.setFont(new java.awt.Font("Comic Sans MS", 3, 24)); // NOI18N
+        Jbnt_StartRobin.setForeground(new java.awt.Color(255, 255, 102));
+        Jbnt_StartRobin.setText("Start Robin");
+        Jbnt_StartRobin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Jbnt_StartRobinActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Jbnt_StartRobin, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 150, 220, 60));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/loop (2).gif"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1090, 820));
+
+        jButton1.setText("jButton1");
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 150, 150, 60));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Jbnt_StartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jbnt_StartActionPerformed
+    private void Jbnt_StartBatmanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jbnt_StartBatmanActionPerformed
+        HeroeDao daoHeroe = new HeroeDao();
+        Heroe heroeElegido = daoHeroe.obtenerHeroePorNombre("Batman");
+        
         Sonido.reproducir("Transicion.wav");
         this.dispose();
-        Form_Pelea p = new Form_Pelea();
-        p.setVisible(true);
-    }//GEN-LAST:event_Jbnt_StartActionPerformed
+        Form_Pelea p = new Form_Pelea(heroeElegido);
+        p.setVisible(true);     
+    }//GEN-LAST:event_Jbnt_StartBatmanActionPerformed
 
     private void Jbtn_OpcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jbtn_OpcionesActionPerformed
         Form_Opciones op = new Form_Opciones();
@@ -109,6 +128,10 @@ public class MainMenu extends javax.swing.JFrame {
         Sonido.reproducir("Transicion.wav");
         System.exit(0);
     }//GEN-LAST:event_Jbnt_SalirActionPerformed
+
+    private void Jbnt_StartRobinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jbnt_StartRobinActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Jbnt_StartRobinActionPerformed
 
     /**
      * @param args the command line arguments
@@ -147,8 +170,10 @@ public class MainMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Jbnt_Salir;
-    private javax.swing.JButton Jbnt_Start;
+    private javax.swing.JButton Jbnt_StartBatman;
+    private javax.swing.JButton Jbnt_StartRobin;
     private javax.swing.JButton Jbtn_Opciones;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables

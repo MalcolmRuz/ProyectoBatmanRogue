@@ -1,8 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Vista;
+
+import Controlador.Batalla;
+import Controlador.Encuentro;
+import Controlador.ProgresionMapa;
+import Modelo.Heroe;
 
 /**
  *
@@ -13,10 +15,33 @@ public class Form_Pelea extends javax.swing.JFrame {
     /**
      * Creates new form Form_Pelea
      */
-    public Form_Pelea() {
-        initComponents();
+    private ProgresionMapa pro;
+    private Heroe heroeDelJuego; // Para guardar la referencia del héroe
+
+    // Constructor modificado para recibir el héroe
+    public Form_Pelea(Heroe heroe) {
+        initComponents(); // Inicializa componentes de Swing
+        this.heroeDelJuego = heroe;
         Jbtn_Continuar.setVisible(false);
+        inicializarJuego(); // Nuevo método para configurar la lógica del juego
     }
+    private void inicializarJuego() {
+        // Debes inicializar tus objetos Encuentro y Batalla
+        Encuentro encuentro = new Encuentro(); // Asumiendo un constructor por defecto
+        Batalla batalla = new Batalla();       // Asumiendo un constructor por defecto
+
+        // Inicializar ProgresionMapa con los objetos
+        // Puedes iniciar el piso en 1 (o el que corresponda al progreso guardado del héroe)
+        pro = new ProgresionMapa(1, encuentro, batalla, heroeDelJuego);
+        
+        // 🔹 Asocia el botón "Continuar" del formulario (si existe) al controlador
+        // progresion.setBotonContinuar(btnContinuar); 
+        
+        // Inicia el primer encuentro inmediatamente
+        pro.iniciarEncuentro(heroeDelJuego);
+    }
+        
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -170,7 +195,8 @@ public class Form_Pelea extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Jbtn_AtaqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jbtn_AtaqueActionPerformed
-        // TODO add your handling code here:
+         
+        pro.turnoHeroe(1);   // TODO add your handling code here:
     }//GEN-LAST:event_Jbtn_AtaqueActionPerformed
 
     private void Jbtn_SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jbtn_SalirActionPerformed
@@ -236,4 +262,6 @@ public class Form_Pelea extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
+
+    
 }

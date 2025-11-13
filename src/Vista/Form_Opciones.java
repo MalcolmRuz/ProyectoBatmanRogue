@@ -1,6 +1,10 @@
 
 package Vista;
 
+import Vista.MainMenu;
+import Vista.OpcionesPersonaje.Form_OpcionesPj;
+import Vista.OpcionesUser.Form_OpcionesUser;
+
 /**
  *
  * @author Panky
@@ -46,18 +50,18 @@ public class Form_Opciones extends javax.swing.JFrame {
                 Jbnt_UsuarioActionPerformed(evt);
             }
         });
-        getContentPane().add(Jbnt_Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 140, 190, 60));
+        getContentPane().add(Jbnt_Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 140, 190, 50));
 
         Jbtn_Personaje.setBackground(new java.awt.Color(0, 0, 0));
         Jbtn_Personaje.setFont(new java.awt.Font("Comic Sans MS", 3, 24)); // NOI18N
         Jbtn_Personaje.setForeground(new java.awt.Color(255, 255, 102));
-        Jbtn_Personaje.setText("Character");
+        Jbtn_Personaje.setText("Villains");
         Jbtn_Personaje.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Jbtn_PersonajeActionPerformed(evt);
             }
         });
-        getContentPane().add(Jbtn_Personaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 220, 190, 60));
+        getContentPane().add(Jbtn_Personaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 220, 190, 50));
 
         Jbtn_VolverMP.setBackground(new java.awt.Color(0, 0, 0));
         Jbtn_VolverMP.setFont(new java.awt.Font("Comic Sans MS", 3, 24)); // NOI18N
@@ -68,7 +72,7 @@ public class Form_Opciones extends javax.swing.JFrame {
                 Jbtn_VolverMPActionPerformed(evt);
             }
         });
-        getContentPane().add(Jbtn_VolverMP, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 300, 190, 60));
+        getContentPane().add(Jbtn_VolverMP, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 300, 190, 50));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/loop (2).gif"))); // NOI18N
         jLabel1.setText("3");
@@ -84,11 +88,15 @@ public class Form_Opciones extends javax.swing.JFrame {
     }//GEN-LAST:event_Jbtn_VolverMPActionPerformed
 
     private void Jbtn_PersonajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jbtn_PersonajeActionPerformed
+        Form_OpcionesPj Pj = new Form_OpcionesPj();
+        Pj.setVisible(true);
         this.dispose();
-    // TODO add your handling code here:
+
     }//GEN-LAST:event_Jbtn_PersonajeActionPerformed
 
     private void Jbnt_UsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jbnt_UsuarioActionPerformed
+        Form_OpcionesUser OpU = new Form_OpcionesUser();
+        OpU.setVisible(true);
         this.dispose();
     // TODO add your handling code here:
     }//GEN-LAST:event_Jbnt_UsuarioActionPerformed
