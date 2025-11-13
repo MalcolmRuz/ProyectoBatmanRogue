@@ -5,18 +5,23 @@
 package Vista;
 
 import Sonidos.Sonido;
+import javax.sound.sampled.Clip;
 
 /**
  *
  * @author Panky
  */
 public class MainMenu extends javax.swing.JFrame {
+    
+    private Clip musicaFondo;
 
     /**
      * Creates new form MainMenu
      */
     public MainMenu() {
         initComponents();
+
+        musicaFondo = Sonido.reproducirLoop("Fondo.wav");
     }
 
     /**
@@ -30,15 +35,15 @@ public class MainMenu extends javax.swing.JFrame {
 
         Jbnt_Start = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        Jbtn_opciones = new javax.swing.JButton();
-        Jbnt_salir = new javax.swing.JButton();
+        Jbtn_Opciones = new javax.swing.JButton();
+        Jbnt_Salir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Jbnt_Start.setBackground(new java.awt.Color(0, 0, 0));
-        Jbnt_Start.setFont(new java.awt.Font("Comic Sans MS", 3, 18)); // NOI18N
+        Jbnt_Start.setFont(new java.awt.Font("Comic Sans MS", 3, 24)); // NOI18N
         Jbnt_Start.setForeground(new java.awt.Color(255, 255, 102));
         Jbnt_Start.setText("Start");
         Jbnt_Start.addActionListener(new java.awt.event.ActionListener() {
@@ -46,54 +51,64 @@ public class MainMenu extends javax.swing.JFrame {
                 Jbnt_StartActionPerformed(evt);
             }
         });
-        getContentPane().add(Jbnt_Start, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, 100, 40));
+        getContentPane().add(Jbnt_Start, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 150, 130, 60));
 
         jLabel2.setFont(new java.awt.Font("Comic Sans MS", 3, 48)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 51));
         jLabel2.setText("Batman Rogue");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, -1, -1));
+        jLabel2.setToolTipText("");
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, 340, 80));
 
-        Jbtn_opciones.setBackground(new java.awt.Color(0, 0, 0));
-        Jbtn_opciones.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
-        Jbtn_opciones.setForeground(new java.awt.Color(255, 255, 102));
-        Jbtn_opciones.setText("Options");
-        Jbtn_opciones.addActionListener(new java.awt.event.ActionListener() {
+        Jbtn_Opciones.setBackground(new java.awt.Color(0, 0, 0));
+        Jbtn_Opciones.setFont(new java.awt.Font("Comic Sans MS", 3, 24)); // NOI18N
+        Jbtn_Opciones.setForeground(new java.awt.Color(255, 255, 102));
+        Jbtn_Opciones.setText("Options");
+        Jbtn_Opciones.setToolTipText("");
+        Jbtn_Opciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Jbtn_opcionesActionPerformed(evt);
+                Jbtn_OpcionesActionPerformed(evt);
             }
         });
-        getContentPane().add(Jbtn_opciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 180, 100, 40));
+        getContentPane().add(Jbtn_Opciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 230, 130, 60));
 
-        Jbnt_salir.setBackground(new java.awt.Color(0, 0, 0));
-        Jbnt_salir.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
-        Jbnt_salir.setForeground(new java.awt.Color(255, 255, 102));
-        Jbnt_salir.setText("Exit");
-        Jbnt_salir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        Jbnt_salir.addActionListener(new java.awt.event.ActionListener() {
+        Jbnt_Salir.setBackground(new java.awt.Color(0, 0, 0));
+        Jbnt_Salir.setFont(new java.awt.Font("Comic Sans MS", 3, 24)); // NOI18N
+        Jbnt_Salir.setForeground(new java.awt.Color(255, 255, 102));
+        Jbnt_Salir.setText("Exit");
+        Jbnt_Salir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Jbnt_Salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Jbnt_salirActionPerformed(evt);
+                Jbnt_SalirActionPerformed(evt);
             }
         });
-        getContentPane().add(Jbnt_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 240, 100, 40));
+        getContentPane().add(Jbnt_Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 310, 130, 60));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/original-43b9ff268b3e5a744e91c506d358b29a.gif"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 810, 620));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/loop (2).gif"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1090, 820));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void Jbnt_StartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jbnt_StartActionPerformed
         Sonido.reproducir("Transicion.wav");
+        this.dispose();
+        Form_Pelea p = new Form_Pelea();
+        p.setVisible(true);
     }//GEN-LAST:event_Jbnt_StartActionPerformed
 
-    private void Jbtn_opcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jbtn_opcionesActionPerformed
+    private void Jbtn_OpcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jbtn_OpcionesActionPerformed
+        Form_Opciones op = new Form_Opciones();
+        op.setVisible(true);
         Sonido.reproducir("Transicion.wav");
-    }//GEN-LAST:event_Jbtn_opcionesActionPerformed
+        this.dispose();
+        
+    }//GEN-LAST:event_Jbtn_OpcionesActionPerformed
 
-    private void Jbnt_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jbnt_salirActionPerformed
+    private void Jbnt_SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jbnt_SalirActionPerformed
         Sonido.reproducir("Transicion.wav");
         System.exit(0);
-    }//GEN-LAST:event_Jbnt_salirActionPerformed
+    }//GEN-LAST:event_Jbnt_SalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -131,9 +146,9 @@ public class MainMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Jbnt_Salir;
     private javax.swing.JButton Jbnt_Start;
-    private javax.swing.JButton Jbnt_salir;
-    private javax.swing.JButton Jbtn_opciones;
+    private javax.swing.JButton Jbtn_Opciones;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
